@@ -5,21 +5,33 @@ labels: ["task", "triage"]
 body:
   - type: textarea
     id: objective
-    attributes: {label: Objective, description: Concrete end state.}
-    validations: {required: true}
+    attributes:
+      label: Objective
+      description: "Concrete end state."
+    validations:
+      required: true
   - type: textarea
     id: context
-    attributes: {label: Context and dependencies, description: Jira key, repositories, services, and prerequisite work.}
-    validations: {required: true}
+    attributes:
+      label: Context and dependencies
+      description: "Jira key, repositories, services, and prerequisite work."
+    validations:
+      required: true
   - type: textarea
     id: work
-    attributes: {label: Required work}
-    validations: {required: true}
+    attributes:
+      label: Required work
+    validations:
+      required: true
   - type: textarea
     id: acceptance
-    attributes: {label: Acceptance and verification evidence}
-    validations: {required: true}
+    attributes:
+      label: Acceptance and verification evidence
+    validations:
+      required: true
   - type: textarea
     id: rollback
-    attributes: {label: Risk and rollback}
-    validations: {required: true}
+    attributes:
+      label: Risk and rollback
+    validations:
+      required: true

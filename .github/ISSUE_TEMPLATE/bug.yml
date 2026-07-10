@@ -8,25 +8,42 @@ body:
       value: Do not include secrets, personal data, or private customer information.
   - type: input
     id: summary
-    attributes: {label: Summary, description: What is broken?}
-    validations: {required: true}
+    attributes:
+      label: Summary
+      description: "What is broken?"
+    validations:
+      required: true
   - type: textarea
     id: reproduce
-    attributes: {label: Reproduction, description: Exact steps, inputs, and environment.}
-    validations: {required: true}
+    attributes:
+      label: Reproduction
+      description: "Exact steps, inputs, and environment."
+    validations:
+      required: true
   - type: textarea
     id: expected
-    attributes: {label: Expected behavior}
-    validations: {required: true}
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
   - type: textarea
     id: evidence
-    attributes: {label: Evidence, description: Sanitized logs, errors, screenshots, or failing checks.}
-    validations: {required: true}
+    attributes:
+      label: Evidence
+      description: "Sanitized logs, errors, screenshots, or failing checks."
+    validations:
+      required: true
   - type: dropdown
     id: severity
-    attributes: {label: Severity, options: [Critical, High, Medium, Low]}
-    validations: {required: true}
+    attributes:
+      label: Severity
+      options: [Critical, High, Medium, Low]
+    validations:
+      required: true
   - type: textarea
     id: acceptance
-    attributes: {label: Acceptance criteria, description: What evidence will prove the bug is resolved?}
-    validations: {required: true}
+    attributes:
+      label: Acceptance criteria
+      description: "What evidence will prove the bug is resolved?"
+    validations:
+      required: true
