@@ -1,0 +1,25 @@
+name: Feature request
+description: Propose a new user or operational capability
+title: "feat: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes: {label: Problem, description: What outcome is currently difficult or impossible?}
+    validations: {required: true}
+  - type: textarea
+    id: outcome
+    attributes: {label: Desired outcome, description: Describe observable behavior, not only an implementation.}
+    validations: {required: true}
+  - type: textarea
+    id: scope
+    attributes: {label: Scope and dependencies, description: Affected users, repositories, contracts, data, or infrastructure.}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Acceptance criteria}
+    validations: {required: true}
+  - type: textarea
+    id: risk
+    attributes: {label: Security, privacy, migration, and rollback considerations}
+    validations: {required: true}

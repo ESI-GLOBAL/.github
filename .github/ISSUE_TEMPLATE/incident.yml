@@ -1,0 +1,29 @@
+name: Incident or operational problem
+description: Record a production, security, availability, or automation incident
+title: "incident: "
+labels: ["incident", "triage"]
+body:
+  - type: dropdown
+    id: priority
+    attributes: {label: Priority, options: [P0 Critical, P1 High, P2 Medium, P3 Low]}
+    validations: {required: true}
+  - type: textarea
+    id: impact
+    attributes: {label: Impact and affected systems, description: Include start time and current state.}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Sanitized evidence and timeline}
+    validations: {required: true}
+  - type: textarea
+    id: attempts
+    attributes: {label: Mitigation and recovery attempts}
+    validations: {required: true}
+  - type: textarea
+    id: rootcause
+    attributes: {label: Root cause or leading hypothesis}
+    validations: {required: true}
+  - type: textarea
+    id: prevention
+    attributes: {label: Recovery, verification, and permanent prevention}
+    validations: {required: true}
