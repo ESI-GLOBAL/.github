@@ -1,0 +1,53 @@
+name: Governance Validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Governance Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate required organization files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            README.md
+            SECURITY.md
+            CONTRIBUTING.md
+            profile/README.md
+            .github/pull_request_template.md
+            .github/ISSUE_TEMPLATE/bug.yml
+            .github/ISSUE_TEMPLATE/feature.yml
+            .github/ISSUE_TEMPLATE/task.yml
+            .github/ISSUE_TEMPLATE/incident.yml
+            .github/ISSUE_TEMPLATE/config.yml
+          )
+          for file in "${required[@]}"; do
+            test -s "$file" || { echo "::error file=$file::required file is missing or empty"; exit 1; }
+          done
+      - name: Validate YAML syntax
+        shell: ruby {0}
+        run: |
+          require "yaml"
+          Dir.glob(".github/**/*.{yml,yaml}").sort.each do |path|
+            YAML.safe_load_file(path, aliases: true)
+            puts "validated #{path}"
+          rescue StandardError => error
+            warn "::error file=#{path}::#{error.message}"
+            exit 1
+          end
+      - name: Reject private key material
+        shell: bash
+        run: |
+          if git grep -nIE 'BEGIN (RSA|EC|OPENSSH|PRIVATE) KEY'; then
+            echo '::error::private key material found in repository'
+            exit 1
+          fi
