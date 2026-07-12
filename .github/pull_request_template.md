@@ -6,9 +6,19 @@
 
 <!-- Exact systems, routes, contracts, migrations, or infrastructure affected. -->
 
+## Branch path
+
+- Source branch:
+- Target branch:
+- Branch class: feature/fix/docs/chore or promotion
+- Policy confirmation:
+  - [ ] Feature/fix/docs/chore PRs target `dev`
+  - [ ] Promotion PR is exactly one of `dev -> test`, `test -> stage`, or `stage -> main`
+  - [ ] No direct feature/fix/docs/chore PR targets `main`
+
 ## Verification
 
-<!-- Exact commands and meaningful results. Do not claim tests that were not run. -->
+<!-- Exact commands and meaningful results. Do not claim tests that were not run. For temporary branch promotions, record the local ESIG-Comp / WSL validation commands that justified this PR. -->
 
 ## Risk review
 
