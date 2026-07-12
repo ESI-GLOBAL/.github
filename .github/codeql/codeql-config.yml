@@ -1,0 +1,17 @@
+name: "ESI-GLOBAL CodeQL Configuration"
+disable-default-queries: false
+queries:
+  - uses: security-and-quality
+paths-ignore:
+  - node_modules
+  - dist
+  - build
+  - .next
+  - __pycache__
+  - '**/*.test.*'
+  - '**/*.spec.*'
+  - '**/tests/**'
+  - '**/test/**'
+  - '**/vendor/**'
+  - '**/*.generated.*'
+  - '**/generated/**'

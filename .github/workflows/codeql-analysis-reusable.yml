@@ -1,0 +1,52 @@
+# ESI-GLOBAL Shared CodeQL Analysis Workflow (Reusable)
+# Called by each repo's codeql-analysis.yml
+# Runs CodeQL analysis on push to main and on every PR
+name: "CodeQL Analysis (Reusable)"
+
+on:
+  workflow_call:
+    inputs:
+      language:
+        description: 'Comma-separated list of languages to analyze'
+        required: true
+        type: string
+      debug:
+        description: 'Enable debug mode'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyze (${{ inputs.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ${{ fromJSON(format('[{0}]', inputs.language)) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-and-quality
+          config-file: ESI-GLOBAL/.github/.github/codeql/codeql-config.yml@main
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
